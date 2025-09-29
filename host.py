@@ -1,13 +1,12 @@
-import asyncio
-from pas import bot as bot1
-from mvdpasbot import bot as bot2
+import subprocess
 
-async def main():
-    await asyncio.gather(
-        bot1.polling(non_stop=True),
-        bot2.polling(non_stop=True)
-    )
+# Запускаем первый бот
+p1 = subprocess.Popen(["python3", "pas.py"])
 
-if __name__ == "__main__":
-    asyncio.run(main())
+# Запускаем второй бот
+p2 = subprocess.Popen(["python3", "mvdpasbot.py"])
+
+# Ждём, чтобы оба процесса работали
+p1.wait()
+p2.wait()
 
